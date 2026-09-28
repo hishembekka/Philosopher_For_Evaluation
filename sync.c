@@ -50,7 +50,7 @@ int	ft_wait_start_or_end(t_table *table)
 			return (1);
 		if (start)
 			return (0);
-		if (usleep(1000) == -1)
+		if (usleep(500) == -1)
 			return (ft_put_simulation_stopped(table), 1);
 	}
 }

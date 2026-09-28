@@ -37,7 +37,7 @@ static int	ft_check_philo(t_philo *philo, int *finished)
 }
 
 /*
-** Toutes les ~1 ms : verifie chaque philo. S'arrete a la premiere mort,
+** Toutes les ~0.5 ms : verifie chaque philo. S'arrete a la premiere mort,
 ** ou quand tous ont mange au moins nb_time_to_eat fois.
 */
 void	*ft_monitor_routine(void *arg)
@@ -62,7 +62,7 @@ void	*ft_monitor_routine(void *arg)
 		}
 		if (table->nb_time_to_eat > 0 && finished == table->nb_philo)
 			return (ft_put_simulation_stopped(table), NULL);
-		if (usleep(1000) == -1)
+		if (usleep(500) == -1)
 			return (ft_put_simulation_stopped(table), NULL);
 	}
 	return (NULL);

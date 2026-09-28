@@ -63,12 +63,13 @@ int	ft_sleep(t_philo *philo)
 
 /*
 ** Nombre pair : pas d'attente, les deux groupes alternent naturellement.
-** Nombre impair : un cycle doit durer au moins 3 * time_to_eat pour que
-** chacun ait son tour, donc think = 2 * eat - sleep (si positif).
+** Nombre impair : conserve une marge avant time_to_die pour absorber les
+** retards d'ordonnancement lorsque le cycle nominal est trop serre.
 */
 int	ft_think(t_philo *philo)
 {
 	long	time_to_think;
+	long	max_time_to_think;
 
 	if (ft_print_status(philo, "is thinking", false))
 		return (1);
@@ -76,6 +77,11 @@ int	ft_think(t_philo *philo)
 		return (0);
 	time_to_think = philo->table->time_to_eat * 2
 		- philo->table->time_to_sleep;
+	max_time_to_think = philo->table->time_to_die
+		- philo->table->time_to_eat - philo->table->time_to_sleep
+		- philo->table->time_to_die / 20;
+	if (time_to_think > max_time_to_think)
+		time_to_think = max_time_to_think;
 	if (time_to_think > 0)
 		return (ft_usleep(time_to_think, philo->table));
 	return (0);

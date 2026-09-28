@@ -22,7 +22,7 @@ long	ft_get_time_now(void)
 }
 
 /*
-** usleep() seul derive : on dort par tranches de 1 ms en reverifiant
+** usleep() seul derive : on dort par tranches de 500 us en reverifiant
 ** l'heure, et on sort tout de suite si la simulation s'arrete.
 */
 int	ft_usleep(long time_sleep_in_ms, t_table *table)
@@ -40,7 +40,7 @@ int	ft_usleep(long time_sleep_in_ms, t_table *table)
 	{
 		if (ft_simulation_stopped(table))
 			return (1);
-		if (usleep(1000) == -1)
+		if (usleep(500) == -1)
 			return (ft_put_simulation_stopped(table), 1);
 		now = ft_get_time_now();
 		if (now == -1)

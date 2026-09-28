@@ -39,7 +39,7 @@ int	ft_eat_alone(t_philo *philo)
 	ft_print_status(philo, "has taken a fork", false);
 	while (!ft_simulation_stopped(philo->table))
 	{
-		if (usleep(1000) == -1)
+		if (usleep(500) == -1)
 		{
 			ft_put_simulation_stopped(philo->table);
 			break ;

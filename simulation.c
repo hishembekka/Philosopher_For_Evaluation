@@ -76,7 +76,7 @@ int	ft_simulation(t_table *table)
 	{
 		if (ft_simulation_stopped(table))
 			return (1);
-		if (usleep(1000) == -1)
+		if (usleep(500) == -1)
 			return (ft_put_simulation_stopped(table), 1);
 	}
 	if (ft_set_start_time(table))
